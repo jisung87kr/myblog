@@ -1,33 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>myblog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>title</th>
-                    <th>published_date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for post in posts %}
-                <tr>
-                    <td>
-                        <a href="{% url 'myblog:post' post.pk %}">{{ post.title }}</a>
-                    </td>
-                    <td>{{ post.published_date | date:"Y-m-d" }}</td>
-                </tr>
+{% extends 'myblog/base.html' %}
+
+{% block content %}
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>title</th>
+                <th>published_date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td>
+                    <a href="{% url 'myblog:post' post.pk %}">{{ post.title }}</a>
+                </td>
+                <td>{{ post.published_date | date:"Y-m-d" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        <span class="step-links">
+            {% if posts.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ posts.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                {% for page in page_range %}
+                <a href="?page={{page}}">{{ page }}</a>
                 {% endfor %}
-            </tbody>
-        </table>
+            </span>
+    
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}">next</a>
+                <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
     </div>
-    <a href="{% url 'myblog:write' %}">write</a>
-</body>
-</html>
+</div>
+<a href="{% url 'myblog:write' %}">write</a>
+{% endblock %}

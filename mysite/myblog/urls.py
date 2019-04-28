@@ -8,4 +8,5 @@ urlpatterns = [
     path('post/<int:pk>/', views.post, name="post"),
     path('write/', views.write, name="write"),
     path('write/<int:pk>/', views.modi, name="modi"),
+    path('del/<int:pk>/', views.delete, name="delete"),
 ]
