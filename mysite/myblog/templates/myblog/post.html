@@ -15,12 +15,14 @@
             <th>내용</th>
             <td>{{ post.content }}</td>
         </tr>
+        {% if post.files %}
         <tr>
             <th>첨부파일</th>
             <td>
                 <a href="{{ post.files.url }}" target="_blank" >{{ post.files.name }}</a>
             </td>
         </tr>
+        {% endif %}
     </tbody>
 </table>
 <a href="{% url 'myblog:index' %}">목록</a>
