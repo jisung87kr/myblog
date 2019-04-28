@@ -6,6 +6,7 @@ class Post(models.Model):
     autor = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=255, null=False, blank=False)
     content = models.TextField()
+    files = models.FileField(null=True, upload_to="myblog/media/%Y/%m/%d")
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(default=timezone.now)
 
