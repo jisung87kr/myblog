@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>myblog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'myblog/css/style.css' %}">
+</head>
+<body>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>제목</th>
+                <td>{{ post.title }}</td>
+            </tr>
+            <tr>    
+                <th>발행일</th>
+                <td>{{ post.published_date | date:"Y-m-d" }}</td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td>{{ post.content }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{% url 'myblog:index' %}">목록</a>
+    <a href="{% url 'myblog:modi' post.pk%}">수정</a>
+</body>
+</html>

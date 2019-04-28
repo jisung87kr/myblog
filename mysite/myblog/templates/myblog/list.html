@@ -19,12 +19,15 @@
             <tbody>
                 {% for post in posts %}
                 <tr>
-                    <td>{{ post.title }}</td>
+                    <td>
+                        <a href="{% url 'myblog:post' post.pk %}">{{ post.title }}</a>
+                    </td>
                     <td>{{ post.published_date | date:"Y-m-d" }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+    <a href="{% url 'myblog:write' %}">write</a>
 </body>
 </html>

@@ -5,4 +5,7 @@ app_name='myblog'
 
 urlpatterns = [
     path('', views.index, name="index"),
+    path('post/<int:pk>/', views.post, name="post"),
+    path('write/', views.write, name="write"),
+    path('write/<int:pk>/', views.modi, name="modi"),
 ]
